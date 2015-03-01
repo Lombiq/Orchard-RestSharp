@@ -2,11 +2,11 @@
 AntiForgery: enabled
 Author: Lombiq
 Website: http://orchardrestsharp.codeplex.com/
-Version: 104.4.0.0
+Version: 105.0.1
 OrchardVersion: 1.8
 Description: Contains the RestSharp library (https://github.com/restsharp/RestSharp) for easy re-use from modules.
 Features:
-    Lombiq.RestSharp:
+	Lombiq.RestSharp:
 		Name: RestSharp
-        Description: Contains the RestSharp library (https://github.com/restsharp/RestSharp) for easy re-use from modules.
+		Description: Contains the RestSharp library (https://github.com/restsharp/RestSharp) for easy re-use from modules.
 		Category: Developer
