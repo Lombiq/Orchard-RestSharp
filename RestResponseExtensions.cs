@@ -28,5 +28,11 @@ namespace RestSharp
             if (response.StatusCode != HttpStatusCode.OK)
                 throw new WebException("The request to " + response.Request.Resource + " returned the status code " + response.StatusCode + ".");
         }
+
+        public static void ThrowIfStatusCodeNotSuccessful(this IRestResponse response)
+        {
+            if (!new[] { HttpStatusCode.OK, HttpStatusCode.Created, HttpStatusCode.Accepted, HttpStatusCode.NonAuthoritativeInformation, HttpStatusCode.NoContent, HttpStatusCode.ResetContent, HttpStatusCode.PartialContent }.Contains(response.StatusCode))
+                throw new WebException("The request to " + response.Request.Resource + " returned the status code " + response.StatusCode + ".");
+        }
     }
 }
