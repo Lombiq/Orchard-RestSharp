@@ -1,9 +1,9 @@
-﻿Name: RestSharp
+Name: RestSharp
 AntiForgery: enabled
 Author: Lombiq
 Website: http://orchardrestsharp.codeplex.com/
 Version: 105.0.1
-OrchardVersion: 1.8
+OrchardVersion: 1.9.0
 Description: Contains the RestSharp library (https://github.com/restsharp/RestSharp) for easy re-use from modules.
 Features:
 	Lombiq.RestSharp:
