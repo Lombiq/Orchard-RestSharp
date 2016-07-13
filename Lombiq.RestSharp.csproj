@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -14,7 +14,8 @@
     <AssemblyName>Lombiq.RestSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews Condition=" '$(BuildViews)' == 'true' ">true</MvcBuildViews>
-    <FileUpgradeFlags></FileUpgradeFlags>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
@@ -119,11 +120,14 @@
   <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
   </Target>
-  <!-- Orchard App Host (https://orchardapphost.codeplex.com/) compatibility start. Enabling the usage of a lib folder at a different location. -->
+  <!-- Orchard App Host (https://github.com/Lombiq/Orchard-Application-Host) compatibility start. Enabling the usage of a lib folder at a different location. -->
   <ItemGroup>
     <LibReferenceSearchPathFiles Include="..\..\Orchard\lib\**\*.dll">
       <InProject>false</InProject>
     </LibReferenceSearchPathFiles>
+    <NuGetReferenceSearchPathFiles Include="..\..\Orchard\src\packages\**\*.dll">
+      <InProject>false</InProject>
+    </NuGetReferenceSearchPathFiles>
   </ItemGroup>
   <Target Name="BeforeResolveReferences">
     <RemoveDuplicates Inputs="@(LibReferenceSearchPathFiles->'%(RootDir)%(Directory)')">
@@ -132,11 +136,17 @@
     <CreateProperty Value="@(LibReferenceSearchPath);$(AssemblySearchPaths)">
       <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
     </CreateProperty>
+    <RemoveDuplicates Inputs="@(NuGetReferenceSearchPathFiles->'%(RootDir)%(Directory)')">
+      <Output TaskParameter="Filtered" ItemName="NuGetReferenceSearchPath" />
+    </RemoveDuplicates>
+    <CreateProperty Value="@(NuGetReferenceSearchPath);$(AssemblySearchPaths)">
+      <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
+    </CreateProperty>
   </Target>
   <PropertyGroup Condition="Exists('..\..\Orchard\lib')">
     <ModulesRoot>..\..\Orchard\src\Orchard.Web\Modules\Orchard.Alias\</ModulesRoot>
   </PropertyGroup>
-  <!-- Orchard App Host (https://orchardapphost.codeplex.com/) compatibility end. -->
+  <!-- Orchard App Host (https://github.com/Lombiq/Orchard-Application-Host) compatibility end. -->
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -145,7 +155,8 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>45979</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl></IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
           <CustomServerUrl>http://orchard.codeplex.com</CustomServerUrl>
