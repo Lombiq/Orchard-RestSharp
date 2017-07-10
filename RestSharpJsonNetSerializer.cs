@@ -9,8 +9,8 @@ using RestSharp.Serializers;
 namespace Lombiq.RestSharp
 {
     /// <summary>
-    /// Default JSON serializer for request bodies
-    /// Doesn't currently use the SerializeAs attribute, defers to Newtonsoft's attributes
+    /// Default JSON serializer for request bodies.
+    /// Doesn't currently use the SerializeAs attribute, defers to Newtonsoft's attributes.
     /// </summary>
     /// <remarks>
     /// Taken from: http://blog.patrickmriley.net/2014/02/restsharp-using-jsonnet-serializer.html
